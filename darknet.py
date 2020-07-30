@@ -128,7 +128,7 @@ if os.name == "nt":
             lib = CDLL(winGPUdll, RTLD_GLOBAL)
             print("Environment variables indicated a CPU run, but we didn't find `"+winNoGPUdll+"`. Trying a GPU run anyway.")
 else:
-    lib = CDLL("./libdarknet.so", RTLD_GLOBAL)
+    lib = CDLL("/home/q100-ai/yolov4/darknet/libdarknet.so", RTLD_GLOBAL)
 lib.network_width.argtypes = [c_void_p]
 lib.network_width.restype = c_int
 lib.network_height.argtypes = [c_void_p]
@@ -317,7 +317,11 @@ netMain = None
 metaMain = None
 altNames = None
 
-def performDetect(imagePath="data/dog.jpg", thresh= 0.25, configPath = "./cfg/yolov4.cfg", weightPath = "yolov4.weights", metaPath= "./cfg/coco.data", showImage= True, makeImageOnly = False, initOnly= False):
+cfg_path = '/home/q100-ai/yolov4/darknet/cfg/yolov4.cfg'
+weight_path = '/home/q100-ai/yolov4/darknet/yolov4.weights'
+meta_path = '/home/q100-ai/yolov4/darknet/cfg/coco.data'
+
+def performDetect(imagePath="data/dog.jpg", thresh= 0.25, configPath = cfg_path, weightPath = weight_path, metaPath= meta_path, showImage= True, makeImageOnly = False, initOnly= False):
     """
     Convenience function to handle the detection and returns of objects.
 
